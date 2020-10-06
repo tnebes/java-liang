@@ -28,8 +28,6 @@ public class SortingArrays3 {
 				list[i] = currentMin;
 
 			}
-		
 		}
-	
 	}
 }

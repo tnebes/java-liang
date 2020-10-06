@@ -5,7 +5,7 @@ public class VarArgsDemo {
 		printMax();
 	}
 
-	public static void printMax(double... numbers) { 
+	public static void printMax(double... numbers) {
 		// this is known as ellipsis, when I don't know how many parameters will enter a method.
 		// Actually, this is a variable-length argument list
 		if (numbers.length == 0) {
@@ -21,4 +21,4 @@ public class VarArgsDemo {
 
 		System.out.println("The max value is " + result);
 	}
-
+}
