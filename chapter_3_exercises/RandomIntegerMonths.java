@@ -42,7 +42,6 @@ public class RandomIntegerMonths {
 			System.out.print("Do you wish to get another random month? y/n " );
 			//the following below can never never work because ternary operators
 			//are expressions, not statements. This is why
-			//Ja:b:a won't do jack shit.
 			//input.next().toLowerCase().equals("n") ? break : continue;
 			if (input.next().toLowerCase().equals("n"))
 				break;

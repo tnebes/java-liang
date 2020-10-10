@@ -2,3 +2,5 @@ out/
 learning/
 *.java~
 *.un~
+*.swp
+idea/

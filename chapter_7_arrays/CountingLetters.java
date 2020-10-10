@@ -23,7 +23,7 @@ public class CountingLetters {
 			 * multiply the return of the method with the (int) of 'Z' ... or some magic
 			 * like that. this is more elegant however.
 			 */
-			// (tnebes) NOTE: this was done in a previous exercise. fuck.
+			// (tnebes) NOTE: this was done in a previous exercise.
 		}
 		return chars;
 	}

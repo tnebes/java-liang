@@ -26,7 +26,7 @@ public class SortingArrays {
 				}
 			}
 
-			if (currentMinIndex != i) { // the fuck does this do?
+			if (currentMinIndex != i) { // what does this do?
 				list[currentMinIndex] = list[i];
 				list[i] = currentMin;
 			}
