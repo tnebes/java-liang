@@ -6,3 +6,4 @@ learning/
 .idea/
 *.iml
 .gitignore~
+*.class
