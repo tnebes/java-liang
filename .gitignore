@@ -4,6 +4,7 @@ learning/
 *.un~
 *.swp
 .idea/
+/**/.idea/
 *.iml
 .gitignore~
 *.class
