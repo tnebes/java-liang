@@ -13,14 +13,26 @@ public class ExecutionTime {
 
 	long startTime, endTime, executionTime;
 
+	int[] myList = new int[100000000];
+
+	for (int i = 0; i < myList.length; i++) {
+			myList[i] = i + 1;
+	}
+
+	int[] searchList = {1, 25000000, 50000000, 75000000, 100000000};
+
 	startTime = System.nanoTime();
-	// code here
+	for (int i = 0; i < searchList.length; i++) {
+		System.out.printf("Found at index: %d\n", linearSearch(myList, searchList[i]));
+	}
 	endTime = System.nanoTime();
 	executionTime = endTime - startTime;
 	System.out.printf("search took: %d\n", executionTime);
 
 	startTime = System.nanoTime();
-	// code here
+	for (int i = 0; i < searchList.length; i++) {
+		System.out.printf("Found at index: %d\n", binarySearch(myList, searchList[i]));
+	}
 	endTime = System.nanoTime();
 	executionTime = endTime - startTime;
 	System.out.printf("search took: %d\n", executionTime);
