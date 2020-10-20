@@ -31,7 +31,8 @@ public class LockerPuzzle {
 		//which lockers are open?
 		for (int i = 0; i < lockerStatus.length; i++) {
 			if (lockerStatus[i])
-				System.out.printf("Locker %d is open.\n", i);
+				System.out.printf("%d ", i);
 		}
+		System.out.print("\n");
 	}
 }
