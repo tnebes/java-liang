@@ -10,8 +10,6 @@
  * The first number indicates the number of elements in the list.
  */
 
-import java.util.Arrays; // remove this
-
 public class SortedConstantInterval {
 	public static void main(String[] args) {
 	
