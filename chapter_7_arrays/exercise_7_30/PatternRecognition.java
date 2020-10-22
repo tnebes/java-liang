@@ -56,17 +56,17 @@ public class PatternRecognition {
 		 * anywhere in the array. Returns true if there are. */
 		
 		for (int i = 0; i < list.length; i++) {
-			int counter = 0;
-			for (int j = i; j < list.length; j++) {
+			int counter = 1;
+			for (int j = i + 1; j < list.length; j++) {
 				if (list[i] == list[j]) {
 					counter++;
-					if (counter == 4)
-						return true;
 				}
 				else {
 					break;
 				}
 			}
+			if (counter >= 4)
+				return true;
 		}
 		return false;
 	}
