@@ -15,17 +15,15 @@ public class Hangman {
 	public static void main(String[] args) {
 	
 		String[] words = {"directory", "write", "amazing", "games",
-			"memory", "bytes", "corona virus"};
+			"memory", "bytes", "corona virus", "quick", "brown", "fox",
+			"jumped", "over", "lazy", "dog"};
 		Scanner input = new Scanner(System.in);
-		
-		while (true) {
+
+		do {
 			guess(words);
 			System.out.print("Do you want to guess another word? y/n ");
-			if (input.next().charAt(0) != 'y')
-				break;
-		}
-		System.out.print("Thank you and goodybe.");
-
+		} while (Character.toLowerCase(input.next().charAt(0)) == 'y');
+		System.out.print("Thank you and goodbye.");
 	}
 
 	public static void guess(String[] wordList) {
@@ -34,8 +32,7 @@ public class Hangman {
 		java.util.Scanner input = new java.util.Scanner(System.in);
 		String word = wordList[rng.nextInt(wordList.length)];
 		char[] wordCharArray = new char[word.length()];
-		int usedLetterCounter = 0;
-		char[] usedLetters = new char[26]; // maybe we could use one of the arrays above? 
+		char[] usedLetters = new char[26];
 		int miss = 0;
 
 		for (int i = 0; i < wordCharArray.length; i++) {
@@ -50,52 +47,59 @@ public class Hangman {
 		}
 
 		char guess;
+		do {
+			do {
+				System.out.print("(Guess) Enter a letter in word ");
+				for (int i = 0; i < solvedCharArray.length; i++)
+					System.out.printf("%c", solvedCharArray[i]);
+				System.out.print(" > ");
+				guess = Character.toLowerCase(input.next().charAt(0));
+				System.out.print("\n");
+			} while (!isUniqueGuess(guess, usedLetters));
 
-		while (true) {
-
-			System.out.print("(Guess) Enter a letter in word ");	
-			for (int i = 0; i < solvedCharArray.length; i++)
-				System.out.printf("%c", solvedCharArray[i]);
-			System.out.print(" > ");
-
-			boolean letterUsed = false;
-			while (true) {
-				guess = input.next().charAt(0);
-				for (int i = 0; i < usedLetters.length; i++) {
-					if (guess == usedLetters[i]) {
-						letterUsed = true;
-						break;
-					}
-				}
-			}
-			if (!letterUsed)
-				break;
-			else
-				System.out.printf("%c is already in the word.\n", guess);
-
-
-			System.out.printf("%c", guess);
-			boolean guessed = false;
-			for (int i = 0; i < wordCharArray.length; i++) {
+			boolean guessedOne = false;
+			for (int i = 0; i < solvedCharArray.length; i++) {
 				if (guess == wordCharArray[i]) {
 					solvedCharArray[i] = guess;
-					guessed = true;
+					guessedOne = true;
 				}
 			}
-			if (!guessed) {
+			if (!guessedOne) {
 				miss++;
-				System.out.printf("\t%c is not in the word\n");
+				System.out.printf("\t%c is not in the word\n", guess);
 			}
-			
-			for (int i = 0; i < solvedCharArray.length; i++) {
-				if (!(solvedCharArray[i] == wordCharArray[i]))
-					break;
-				if (i == solvedCharArray.length - 1) {
-					System.out.printf("The word is %s. You missed %d",
-						word, miss);
-					return;
-				}
+
+		} while (!isGuessed(wordCharArray, solvedCharArray));
+
+		System.out.printf("The word is %s. ", word);
+		if (miss > 1)
+			System.out.printf("You missed %d times.\n", miss);
+		else
+			System.out.printf("You missed %d time.\n", miss);
+	}
+
+	public static boolean isGuessed(char[] list1, char[] list2) {
+		for (int i = 0; i < list1.length; i++) {
+			if (list1[i] != list2[i])
+				return false;
+		}
+		return true;
+	}
+
+	public static boolean isUniqueGuess(char guess, char[] list) {
+		for (int i = 0; i < list.length; i++) {
+			if (guess == list[i]) {
+				System.out.printf("\t%c is already in the word\n", guess);
+				return false;
 			}
 		}
+		for (int i = 0; i < list.length; i++) {
+			if (list[i] == (char) 0) {
+				list[i] = guess;
+				return true;
+			}
+		}
+		return true;
 	}
+
 }
