@@ -40,10 +40,9 @@ public class FiveQueens {
 
 	}
 
-	public static void placeQueen(int[][] board, int x, int y) {
 	/** method checks whether the board at coordinates is 0. If true,
 	 * places the queen and populates the board with her paths. */
-
+	public static void placeQueen(int[][] board, int x, int y) {
 		if (board[x][y] == 0) {
 			populatePaths(board, x, y);
 			board[x][y] = 1;
@@ -51,9 +50,8 @@ public class FiveQueens {
 		}
 	}
 
+	/** populates the paths that the queen can take.*/
 	public static void populatePaths(int[][] board, int x, int y) {
-		/** populates the paths that the queen can take.*/
-
 		// diagonal population
 		populateXLeftYUp(board, x, y);
 		populateXRightYUp(board, x, y);
@@ -66,46 +64,36 @@ public class FiveQueens {
 	}
 
 	public static void populateXLeftYUp(int[][] board, int x, int y) {
-		
 		while (x >= 0 && y >= 0) {
 			board[x--][y--] = -1;
 		}
-
 	}
 
 	public static void populateXRightYUp(int[][] board, int x, int y) {
-		
 		while (x < board.length && y >= 0) {
 			board[x++][y--] = -1;
 		}
-
 	}
 
 	public static void populateXLeftYDown(int[][] board, int x, int y) {
-	
 		while (x >= 0 && y < board[x].length) {
 			board[x--][y++] = -1;
 		}
-
 	}
 
 	public static void populateXRightYDown(int[][] board, int x, int y) {
-	
 		while (x < board.length && y < board[x].length) {
 			board[x++][y++] = -1;
 		}
-
 	}
 
 	public static void populateX(int[][] board, int y) {
 		for (int x = 0; x < board[y].length; x++) {
 			board[x][y] = -1;
 		}
-	
 	}
 
 	public static void populateY(int[][] board, int x) {
-		
 		for (int y = 0; y < board.length; y++) {
 			board[x][y] = -1;
 		}
