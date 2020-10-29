@@ -1,27 +1,30 @@
-/* Write a method to add two matrices.
- * In order to be added, the two matrices must have the same dimensions
- * and the same or compatible types of elements.
- * Let c be the resulting matrix.
- * Write a test program that prompts the user to enter two 2x2 matrices
- * and displays their sum.
+/* Write a method to multiply two matrices.
+ * Each element c(ij) is a(i1) * b(1j) + a(i2) * b(2j) ... 
+ *
+ * * Cij = Ai1 * B1j + A12 * B2j + Ai3 * B3j
+ *
+ * Write a test program that prompts the user to enter two 3x3 matrices
+ * and displays their product.
  */
 
-import java.util.Locale; // required.
+import java.util.Locale; // required 
 
-public class AddMatrices {
+public class MultiplyMatrices {
 	public static void main(String[] args) {
-		double[][][] matrix = getMatrix();
-		double[][] summedMatrix = addMatrix(
-			matrix[0], matrix[1]);
-		printMatrix(summedMatrix);
+	
+		double[][][] matrices = getMatrix();
+		double[][] multipliedMatrix = multiplyMatrix(
+				matrices[0], matrices[1]);
+		printMatrix(multipliedMatrix);
+
 	}
 
 	/** returns 3d array containing NUMBER_OF_MATRICES matrices
 	 * provided by the user. */
 	public static double[][][] getMatrix() {
 		final int NUMBER_OF_MATRICES = 2;
-		final int MATRIX_COLUMN = 2;
-		final int MATRIX_ROW = 2;
+		final int MATRIX_COLUMN = 3;
+		final int MATRIX_ROW = 3;
 		java.util.Scanner input = new java.util.Scanner(System.in);
 		input.useLocale(Locale.ENGLISH);
 
@@ -40,18 +43,24 @@ public class AddMatrices {
 	
 	}
 
-	/** Adds the matrices. Quite limited method as the assignment states
-	 * that this header must be used.
-	 */
-	public static double[][] addMatrix(double[][] a, double[][]b) {
+	/** multiplies the matrix according to the formula given in the header
+	 * of this file. Returns the multiplied matrix. */
+	public static double[][] multiplyMatrix(double[][] a, double[][] b) {
+	
+		double sum = 0;
+		int index = 0;
 		double[][] c = new double[a.length][a[0].length];
-		for (int i = 0; i < a.length; i++) {
-			for (int j = 0; j < a[i].length; j++) {
-				c[i][j] = a[i][j] + b[i][j];
+
+		for (int i = 0; i < c.length; i++) {
+			for (int j = 0; j < c[i].length; j++) {
+				sum += a[i][j] * b[j][i];
 			}
+			c[i][index++] = sum;
+			if (index > c[i].length)
+				index = 0;
 		}
 		return c;
-	
+
 	}
 
 	/** Prints a 2d array. */
@@ -63,5 +72,6 @@ public class AddMatrices {
 			System.out.printf("\n");
 		}
 	}
+
 
 }
