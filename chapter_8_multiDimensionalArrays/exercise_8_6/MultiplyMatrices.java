@@ -11,12 +11,10 @@ import java.util.Locale; // required
 
 public class MultiplyMatrices {
 	public static void main(String[] args) {
-	
 		double[][][] matrices = getMatrix();
 		double[][] multipliedMatrix = multiplyMatrix(
 				matrices[0], matrices[1]);
 		printMatrix(multipliedMatrix);
-
 	}
 
 	/** returns 3d array containing NUMBER_OF_MATRICES matrices
@@ -48,16 +46,18 @@ public class MultiplyMatrices {
 	public static double[][] multiplyMatrix(double[][] a, double[][] b) {
 	
 		double sum = 0;
-		int index = 0;
 		double[][] c = new double[a.length][a[0].length];
 
 		for (int i = 0; i < c.length; i++) {
 			for (int j = 0; j < c[i].length; j++) {
-				sum += a[i][j] * b[j][i];
+				int k = 0;
+				while (k < c[i].length) {
+					sum += a[i][k] * b[k][j];
+					k++;
+				}
+				c[i][j] = sum;
+				sum = 0;
 			}
-			c[i][index++] = sum;
-			if (index > c[i].length)
-				index = 0;
 		}
 		return c;
 
@@ -72,6 +72,5 @@ public class MultiplyMatrices {
 			System.out.printf("\n");
 		}
 	}
-
 
 }
