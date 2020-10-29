@@ -11,8 +11,6 @@
  * display students in decreasing order of the number of correct answers.
  */
 
-import java.util.Arrays;
-
 public class SortStudentsOnGrades {
 	public static void main(String[] args) {
 		
@@ -40,10 +38,14 @@ public class SortStudentsOnGrades {
 		}
 
 		sortStudentResults(studentResults, studentIDs);
+		printResults(studentResults, studentIDs);
 
 
 	}
 
+	/** returns an int which is the sum of correct answers from answers
+	 * which are compared to the key.
+	 */
 	public static int calculateResult(char[] answers, char[] key) {
 		int result = 0;
 		for (int i = 0; i < answers.length; i++) {
@@ -54,8 +56,36 @@ public class SortStudentsOnGrades {
 		return result;
 	}
 
+	/** sorts to the students ascending with regards to their score.
+	 * also sorts their IDs so that printing is easier.
+	 */
 	public static void sortStudentResults(int[] results, int[] IDs) {
-		//lets use bubblesort
+
+		int temp;
+
+		for (int i = 0; i < results.length; i++) {
+			for (int j = results.length - 1; j > i; j--) {
+				if (results[j] > results [j - 1]) {
+					temp = results[j - 1];
+					results[j - 1] = results[j];
+					results[j] = temp;
+
+					temp = IDs[j - 1];
+					IDs[j - 1] = IDs[j];
+					IDs[j] = temp;					
+				}
+			} 
+		}
+	}
+
+	/** prints the score and the student ID.
+	 */
+	public static void printResults(int[] results, int[] IDs) {
+		for (int i = 0; i < results.length; i++) {
+			System.out.printf("Student %d score:\t%d points.\n",
+				IDs[i], results[i]);
+		}
+
 	}
 }
 
