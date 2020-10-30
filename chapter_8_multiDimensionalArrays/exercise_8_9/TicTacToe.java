@@ -60,7 +60,65 @@ public class TicTacToe {
 	*/
 
 	public static int findWinner(board) {
-		int winner = 0;
+		int counter = 2;
+		//check horizontal win potentials
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 1; j < board[i].length; j++) {
+				if (board[i][0] == board[i][j])
+					counter--;
+				else
+					break;
+			}
+			if (counter == 0)
+				return board[i][0];
+			counter = 2;
+		}
+		//check vertical win potentials
+		for (int i = 0; i < board[0].length; i++) {
+			for (int j = 1; j < board.length; j++) {
+				if (board[0][i] == board[j][i])
+					counter--;
+				else
+					break;
+			}
+			if (counter == 0)
+				return board[0][i];
+			counter == 2;
+		}
+		//check diagonal win potentials
+		for (int i = 1; i < board.length; i++) {
+			if (board[i - 1][i - 1] == board[i][i])
+				counter--;
+			else
+				break;
+		}
+		if (counter == 0)
+			return board[0][i];
+		counter == 2;
+		for (int i = board.length - 1; i > 0; i--) {
+			if (board[board.length - 1][board.length - 1]
+				== board[board.length - 1 - i][board.length - 1 - i]) {
+				counter --;
+			} else
+				break;
+		}
+		if (counter == 0)
+			return board[board.length - 1][board.length - 1];
+		counter == 2;
+		return 0;
+	}
+
+	public static void makeMove(int[][] board, int player) {
+		int row, column;
+		java.util.Scanner input = new java.util.Scanner(System.in);
+
+		System.out.printf("Player %d's move!\n", player);
+		boolean validMove = false;
+		do {
+			
+		} while (!validMove)
+
 
 	}
+
 }
