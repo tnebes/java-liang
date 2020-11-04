@@ -39,7 +39,7 @@ public class FinancialTsunami {
 		input.useLocale(Locale.ENGLISH);
 
 		int numOfBanks = input.nextInt(), limit = input.nextInt();
-		System.out.printf("Loaded number of banks: %d\nLimit set to %d.\n",
+		System.out.printf("Loaded number of banks: %d\nLimit set to $%dM.\n",
 			numOfBanks, limit);
 
 		double[][] bankStatus = new double[numOfBanks][2];
@@ -53,7 +53,7 @@ public class FinancialTsunami {
 			}				
 		}
 		for (int i = 0; i < bankStatus.length; i++) {
-			System.out.printf("Bank %d starting balance is %.2f\n",
+			System.out.printf("Bank %d starting balance is $%.2fM\n",
 				i, bankStatus[i][0]);			
 		}
 		for (int i = 0; i < borrowers.length; i++) {
@@ -77,28 +77,32 @@ public class FinancialTsunami {
 		for (int i = 0; i < unsafeBanks.length; i++) {
 			if (unsafeBanks[i] != -1)
 				System.out.printf("Bank %d is unsafe.\n",
-					i);
+					unsafeBanks[i]);
 		}
 	}
 
+	/** calculates the total assets of a bank which are its initial balance
+	 * and all the loans it gave out. */
 	public static void calculateBalance(double[][] status, double[][] borrowers) {
 		double sum = 0;
 		for (int i = 0; i < status.length; i++) {
 			sum = status[i][0];
-			for (int j = 0; j < borrowers[i][j]; j++) {
-				if (borrowers[i][j] != 0) {
-					sum += borrowers[i][j];
-				}
+			for (int j = 0; j < borrowers[i].length; j++) {
+				sum += borrowers[i][j];
 			}
 			status[i][1] = sum;
 		}
 	}
 
+	/** checks whether any of the bank's current assets are below the limit.
+	 *  If true, the bank can no longer lend money
+	 *  and any lent money to it is destroyed. */
 	public static void checkUnsafe(double[][] status, int limit, double[][] borrowers, int[] unsafe) {
 		for (int i = 0; i < status.length; i++) {
 			if (status[i][1] < (double) limit) {
 				for (int j = 0; j < borrowers[i].length; j++) {
 					borrowers[i][j] = 0;
+					borrowers[j][i] = 0;
 				}
 				if (!isInArray(unsafe, i)) {
 					unsafe[findFirstAvailable(unsafe)] = i;
@@ -107,20 +111,22 @@ public class FinancialTsunami {
 		}
 	}
 
+	/** checks whether a given int is in the array. Returns a bool. */
 	public static boolean isInArray(int[] array, int bank) {
 		for (int i = 0; i < array.length; i++) {
-			if (bank == array[i])
+			if (array[i] == bank)
 				return true;
 		}
 		return false;
 	}
 
+	/** returns the index of the first empty position in an array. */
 	public static int findFirstAvailable(int[] array) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i] == -1)
 				return i;
 		}
-		return 0;
+		return array.length - 1;
 	}
 
 }
