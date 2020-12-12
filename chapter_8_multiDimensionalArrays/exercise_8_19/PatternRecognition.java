@@ -8,10 +8,57 @@
 
 public class PatternRecognition {
 	public static void main(String[] args) {
-	
+      java.util.Scanner input = new java.util.Scanner(System.in);
+
+      System.out.print("How many rows? ");
+      int arrayRows = input.nextInt();
+      System.out.print("How many columns? ");
+      int arrayColumns = input.nextInt();
+
+	   int[][] array = new int[arrayColumns][arrayRows];
+      for (int i = 0; i < array.length; i++) {
+         System.out.printf("Enter %d values for column %d\n", arrayRows, i);
+         for (int j = 0; j < array[i].length; j++) {
+            System.out.printf("Value %d: ", j);
+            array[i][j] = input.nextInt();
+         }
+         System.out.print("\n");
+      }
+      System.out.print(isConsecutiveFour(array));
+   }
+
+
+	public static boolean isConsecutiveFour(int[][] array) {
+	   return (array.length >= 4 || array[0].length >= 4) &&
+         (checkRow(array) || checkColumn(array) ||
+         checkDiagonals(array));
 	}
 
-	public static boolean isConsecutiveFour(int[][] values) {
-	
-	}
+   public static boolean checkRow(int[][] array) {
+      for (int i = 0; i < array.length; i++) {
+         int counter = 0;
+         int comparisonNumber = array[i][0];
+         for (int j = 1; j < array[i].length; j++) {
+            if (comparisonNumber == array[i][j]) {
+               counter++;
+               if (counter >= 4) {
+                  return true;
+               }
+            }
+            else {
+               counter = 0;
+               comparisonNumber = array[i][j];
+            }
+         }
+      }
+      return false;
+   }
+
+   public static boolean checkColumn(int[][] array) {
+      return false;
+   }
+
+   public static boolean checkDiagonals(int[][] array) {
+      return false;
+   }
 }
