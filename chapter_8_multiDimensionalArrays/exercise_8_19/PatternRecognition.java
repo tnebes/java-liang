@@ -8,78 +8,133 @@
 
 public class PatternRecognition {
 	public static void main(String[] args) {
-      java.util.Scanner input = new java.util.Scanner(System.in);
+		boolean randomNumberGeneration = false;
+      @SuppressWarnings("resource")
+		java.util.Scanner input = new java.util.Scanner(System.in);
+      int consecutive = 4;
 
-      System.out.print("How many rows? ");
-      int arrayRows = input.nextInt();
-      System.out.print("How many columns? ");
-      int arrayColumns = input.nextInt();
-
-	  int[][] array = new int[arrayColumns][arrayRows];
-      for (int i = 0; i < array.length; i++) {
-         System.out.printf("Enter %d values for column %d\n", arrayRows, i);
-         for (int j = 0; j < array[i].length; j++) {
-            System.out.printf("Value %d: ", j);
-            array[i][j] = input.nextInt();
-         }
-         System.out.print("\n");
-      }
-      input.close();
-      for (int i = 0; i < array.length; i++) {
-         for (int j = 0; j < array[i].length; j++) {
-            System.out.printf("%d\t", array[i][j]);
-         }
-         System.out.print("\n");
-      }
-      System.out.print(isConsecutiveFour(array));
-   }
-
-
-	public static boolean isConsecutiveFour(int[][] array) {
-	   return (array.length >= 4 || array[0].length >= 4) &&
-         (checkRow(array) || checkColumn(array) ||
-         checkDiagonals(array));
+		while (true) {
+	      System.out.print("How many rows? ");
+	      int arrayRows = input.nextInt();
+	      System.out.print("How many columns? ");
+	      int arrayColumns = input.nextInt();
+			int[][] array = new int[arrayColumns][arrayRows];
+	
+			if (!randomNumberGeneration) {
+		      for (int i = 0; i < array.length; i++) {
+		         System.out.printf("Enter %d values for column %d\n",
+						arrayRows, i);
+		         for (int j = 0; j < array[i].length; j++) {
+		            System.out.printf("Value %d: ", j);
+		            array[i][j] = input.nextInt();
+		         }
+		         System.out.print("\n");
+		      }
+			} else {
+				java.util.Random rng = new java.util.Random();
+				for (int i = 0; i < array.length; i++) {
+					for (int j = 0; j < array[i].length; j++) {
+						array[i][j] = rng.nextInt(3);
+					}
+				}			
+			}
+	     	for (int i = 0; i < array.length; i++) {
+	         for (int j = 0; j < array[i].length; j++) {
+	            System.out.printf("%d\t", array[i][j]);
+	         }
+	         System.out.print("\n");
+	      }
+	      System.out.print(isConsecutive(array, consecutive));
+			System.out.print("Continue? y/n");
+			if (input.next().toLowerCase().equals("n"))
+				break;
+		}
 	}
 
-   public static boolean checkRow(int[][] array) {
-      for (int i = 0; i < array.length; i++) {
-         int counter = 0;
-         int comparisonNumber = array[i][0];
-         for (int j = 1; j < array[i].length; j++) {
-            if (comparisonNumber == array[i][j]) {
-               counter++;
-               if (counter == 4) {
-                  return true;
-               }
-            } else {
-               counter = 0;
-               comparisonNumber = array[i][j];
-            }
-         }
-      }
+
+	public static boolean isConsecutive(int[][] array, int number) {
+	   return (array.length >= 4 || array[0].length >= 4) &&
+         (checkRow(array, number) || checkColumn(array, number) ||
+         checkDiagonals(array, number));
+	}
+
+   public static boolean checkRow(int[][] array, int number) {
+   	for (int i = 0; i < array.length; i++) {
+   		 for (int j = 0; j < array[i].length; j++) {
+   			 int counter = 0;
+   			 for (int k = j + 1; k < array[i].length; k++) {
+   				 if (array[i][j] == array[i][k]) {
+   					 counter++;
+   					 if (counter == number)
+   						 return true;   					 
+   				 } else {
+   					 counter = 0;
+   					 break;
+   				 }
+   			 }
+   		 }
+   	}
       return false;
    }
 
-   public static boolean checkColumn(int[][] array) {
-      for (int i = 0; i < array.length; i++) {
-         int counter = 0;
-         int currentNumber = array[0][i];
-         for (int j = 1; j < array[i].length; j++) {
-            if (array[j][i] == currentNumber) {
-               counter++;
-               if (counter == 4) {
-                  return true;
-               }
-            } else {
-               counter = 0;
-               currentNumber = array[j][i];
-            }   
-         }
-      }
-      return false;
+   public static boolean checkColumn(int[][] array, int number) {
+	  for (int i = 0; i < array.length; i++) {
+		  for (int j = 0; j < array[i].length; j++) {
+			  int counter = 0;
+			  for (int k = j + 1; k < array[i].length; k++) {
+				  if (array[j][i] == array[k][i]) {
+					  counter++;
+					  if (counter == number)
+						  return true;
+				  } else {
+					  counter = 0;
+					  break;
+				  }
+			  }
+		  }
+	  }
+	  return false;
    }
 
-   public static boolean checkDiagonals(int[][] array) {
-      return false;
+   public static boolean checkDiagonals(int[][] array, int number) {
+   	return checkMainDiagonal(array, number) || checkAntidiagonal(array, number);
+   }
+   
+   public static boolean checkMainDiagonal(int[][] array, int number) {
+   	for (int i = 0; i <= array.length - number; i++) { // there is no use comparing if the number of remaining values is smaller than the desired number of consecutives
+   		for (int j = 0; j <= array[i].length - number; j++) {
+   			int counter = 0;
+   			for (int k = j + 1; k < array.length; k++) {
+   				if (array[i][j] == array[i + k][j + k]) {
+   					counter++;
+   					if (counter == number)
+   						return true;
+   				} else {
+   					counter = 0;
+   					break;
+   				}
+   			}
+   		}
+   	}
+   	return false;
+   }
+   
+   public static boolean checkAntidiagonal(int[][] array, int number) {
+   	for (int i = array.length - 1; i >= number; i--) { // no use comparing if we get false
+   		for (int j = array.length - 1; j >= number; j--) {
+   			int counter = 0;
+   			for (int k = 1; k < array[i].length; k++) {
+   				if (array[i][j] == array[i - k][j - k]) {
+						counter++;
+						if (counter == number)
+							return true;
+					} else {
+						counter = 0;
+						break;
+					}
+   			}
+   		}
+   	}
+   	return false;
    }
 }
