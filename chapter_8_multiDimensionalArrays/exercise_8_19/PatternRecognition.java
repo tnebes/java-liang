@@ -120,11 +120,11 @@ public class PatternRecognition {
    }
    
    public static boolean checkAntidiagonal(int[][] array, int number) {
-   	for (int i = array.length - 1; i >= number; i--) { // no use comparing if we get false
+   	for (int i = 0; i <= array.length - number; i++) { // no use comparing if we get false
    		for (int j = array.length - 1; j >= number; j--) {
    			int counter = 0;
    			for (int k = 1; k < array[i].length; k++) {
-   				if (array[i][j] == array[i - k][j - k]) {
+   				if (array[i][j] == array[i + k][j - k]) {
 						counter++;
 						if (counter == number)
 							return true;
