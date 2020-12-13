@@ -1,6 +1,8 @@
 out/
 learning/
 *.java~
+*.*~
+*.classpath
 *.un~
 *.swp
 .idea/
@@ -8,3 +10,4 @@ learning/
 *.iml
 .gitignore~
 *.class
+*.project
