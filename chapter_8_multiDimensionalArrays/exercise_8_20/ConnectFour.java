@@ -9,6 +9,18 @@
 
 public class ConnectFour {
 	public static void main(String[] args) {
+		
+	}
+
+	public static void printBoard(int[][] board) {
+	
+	}
+
+	public static int checkWinner(int[][] board) {
+	
+	}
+
+	public static void playerTurn(int[][] board, int player) {
 	
 	}
 }
