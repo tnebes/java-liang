@@ -34,7 +34,7 @@ public class PatternRecognition {
 				java.util.Random rng = new java.util.Random();
 				for (int i = 0; i < array.length; i++) {
 					for (int j = 0; j < array[i].length; j++) {
-						array[i][j] = rng.nextInt(3);
+						array[i][j] = rng.nextInt(5);
 					}
 				}			
 			}
@@ -51,13 +51,27 @@ public class PatternRecognition {
 		}
 	}
 
-
+	/**
+	 * Method returns true if the array size is larger than the
+	 * desired number of consecutive values and if there are n
+	 * number of consecutive values horizontally, vertically
+	 * or on any diagonal
+	 * @param array : 2d array containing ints
+	 * @param number : the number of consecutive values
+	 * @return boolean
+	 */
 	public static boolean isConsecutive(int[][] array, int number) {
-	   return (array.length >= 4 || array[0].length >= 4) &&
+	   return (array.length >= number || array[0].length >= number) &&
          (checkRow(array, number) || checkColumn(array, number) ||
          checkDiagonals(array, number));
 	}
 
+	/**
+	 * Method returns true if there are n values of the same value
+	 * @param array
+	 * @param number
+	 * @return boolean
+	 */
    public static boolean checkRow(int[][] array, int number) {
    	for (int i = 0; i < array.length; i++) {
    		 for (int j = 0; j < array[i].length; j++) {
@@ -65,7 +79,7 @@ public class PatternRecognition {
    			 for (int k = j + 1; k < array[i].length; k++) {
    				 if (array[i][j] == array[i][k]) {
    					 counter++;
-   					 if (counter == number)
+   					 if (counter == number - 1)
    						 return true;   					 
    				 } else {
    					 counter = 0;
@@ -77,6 +91,12 @@ public class PatternRecognition {
       return false;
    }
 
+   /**
+    * method returns true if there are n values of the same value
+    * @param array
+    * @param number
+    * @return boolean
+    */
    public static boolean checkColumn(int[][] array, int number) {
 	  for (int i = 0; i < array.length; i++) {
 		  for (int j = 0; j < array[i].length; j++) {
@@ -84,7 +104,7 @@ public class PatternRecognition {
 			  for (int k = j + 1; k < array[i].length; k++) {
 				  if (array[j][i] == array[k][i]) {
 					  counter++;
-					  if (counter == number)
+					  if (counter == number - 1)
 						  return true;
 				  } else {
 					  counter = 0;
@@ -96,10 +116,23 @@ public class PatternRecognition {
 	  return false;
    }
 
+   /**
+    * method returns true if any diagonal contains n same values
+    * @param array
+    * @param number
+    * @return boolean
+    */
    public static boolean checkDiagonals(int[][] array, int number) {
    	return checkMainDiagonal(array, number) || checkAntidiagonal(array, number);
    }
    
+   /**
+    * method returns true if the main diagonal and any r-l diagonal
+    * contains n values
+    * @param array
+    * @param number
+    * @return boolean
+    */
    public static boolean checkMainDiagonal(int[][] array, int number) {
    	for (int i = 0; i <= array.length - number; i++) { // there is no use comparing if the number of remaining values is smaller than the desired number of consecutives
    		for (int j = 0; j <= array[i].length - number; j++) {
@@ -107,7 +140,7 @@ public class PatternRecognition {
    			for (int k = j + 1; k < array.length; k++) {
    				if (array[i][j] == array[i + k][j + k]) {
    					counter++;
-   					if (counter == number)
+   					if (counter == number - 1)
    						return true;
    				} else {
    					counter = 0;
@@ -119,14 +152,21 @@ public class PatternRecognition {
    	return false;
    }
    
+   /**
+    * method returns true if the antidiagonal or any l-r diagonal
+    * contains n same values
+    * @param array
+    * @param number
+    * @return boolean
+    */
    public static boolean checkAntidiagonal(int[][] array, int number) {
    	for (int i = 0; i <= array.length - number; i++) { // no use comparing if we get false
-   		for (int j = array.length - 1; j >= number; j--) {
+   		for (int j = array.length - 1; j > array.length - number; j--) {
    			int counter = 0;
    			for (int k = 1; k < array[i].length; k++) {
    				if (array[i][j] == array[i + k][j - k]) {
 						counter++;
-						if (counter == number)
+						if (counter == number - 1)
 							return true;
 					} else {
 						counter = 0;
@@ -137,4 +177,5 @@ public class PatternRecognition {
    	}
    	return false;
    }
+   
 }
