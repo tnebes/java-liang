@@ -22,7 +22,7 @@ public class ConnectFour {
 		do {
 			playerTurn(board, player);
 			player = -player;
-		} while (!isBoardFull(board) && (checkWinner(board, MATCH) != 0));
+		} while (!isBoardFull(board) && (checkWinner(board, MATCH) == 0));
 	}
 
 	/**
@@ -161,31 +161,29 @@ public class ConnectFour {
 
 	public static boolean dropDisk(int[][] board, int player, int column) {
 		if (column > board.length) {
-			System.out.printf("Column %d does not exist.\n");
+			System.out.printf("Column %d does not exist.\n", column);
 			return false;
 		} else if (checkColumnFilled(board, column)) {
-			System.out.printf("Column %d is filled.\n");
+			System.out.printf("Column %d is filled.\n", column);
 			return false;
 		}
 
-		for (int i = 0; i < board[0].length; i++) {
-			for (int j = board.length - 1; j >= 0; j--) {
-				if (board[j][i] == 0) {
-					board[j][i] = player;
-					return true;
-				}
-			}
+		for (int i = board.length - 1; i >= 0; i--) {
+			if (board[i][column] == 0) {
+				board[i][column] = player;
+				return true;
+			}			
 		}
 		return false;
 	}
 
 	public static boolean checkColumnFilled(int[][] board, int column) {
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board[i].length; j++) {
-
+		for (int i = board.length - 1; i >= 0; i--) {
+			if (board[i][column] == 0) {
+				return false;
 			}
 		}
-		return false;
+		return true;
 	}
 
 }
