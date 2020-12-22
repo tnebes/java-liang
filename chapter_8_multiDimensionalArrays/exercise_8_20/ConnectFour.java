@@ -23,6 +23,9 @@ public class ConnectFour {
 			playerTurn(board, player);
 			player = -player;
 		} while (!isBoardFull(board) && (checkWinner(board, MATCH) == 0));
+
+		// TODO: add text for when there is a winner.
+		// TODO: add text for when the board is filled
 	}
 
 	/**
@@ -51,12 +54,13 @@ public class ConnectFour {
 		for (int i = 0; i < board.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < board[i].length; j++) {
-				if (board[i][j] == 0)
-					disk = ' ';
-				else if (board[i][j] == 1)
-					disk = 'R';
-				else
-					disk = 'Y';
+				switch (board[i][j]) {
+					case 1:	disk = 'R';
+								break;
+					case -1:	disk = 'Y';
+								break;
+					default: disk = ' ';					
+				}
 				System.out.printf("%c|", disk);
 			}
 			System.out.print("\n");
@@ -85,7 +89,6 @@ public class ConnectFour {
 		int acrossCheck = checkAcross(board, MATCH);
 		if (acrossCheck != 0)
 			return acrossCheck;
-
 		return 0;
 	}
 
@@ -159,6 +162,13 @@ public class ConnectFour {
 		printBoard(board);
 	}
 
+	/**
+	 * Drops a disk in the selected column for a player. Returns true if the disk has been dropped.
+	 * @param board
+	 * @param player
+	 * @param column
+	 * @return boolean
+	 */
 	public static boolean dropDisk(int[][] board, int player, int column) {
 		if (column > board.length) {
 			System.out.printf("Column %d does not exist.\n", column);
@@ -172,11 +182,17 @@ public class ConnectFour {
 			if (board[i][column] == 0) {
 				board[i][column] = player;
 				return true;
-			}			
+			}
 		}
 		return false;
 	}
 
+	/**
+	 * Checks whether the selected column in the board is filled.
+	 * @param board
+	 * @param column
+	 * @return boolean
+	 */
 	public static boolean checkColumnFilled(int[][] board, int column) {
 		for (int i = board.length - 1; i >= 0; i--) {
 			if (board[i][column] == 0) {
