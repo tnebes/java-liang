@@ -124,6 +124,16 @@ public class ConnectFour {
 	 * @return
 	 */
 	public static int checkVertical(int[][] board, int MATCH) {
+		int matched, player;
+		for (int i = 0; i < board[0].length; i++) {
+			player = board[0][i];
+			matched = player != 0 ? 1 : 0;
+			for (int j = board.length - 1; j >= 0; j--) {
+
+			}
+		}
+		
+		
 		return 0;
 	}
 
