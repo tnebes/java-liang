@@ -7,8 +7,6 @@
  * on the console and determines the status of the game.
  */
 
-import java.util.Scanner;
-
 public class ConnectFour {
 
 	public static java.util.Scanner input = new java.util.Scanner(System.in);
@@ -99,6 +97,23 @@ public class ConnectFour {
 	 * @return
 	 */
 	public static int checkHorizontal(int[][] board, int MATCH) {
+		int matched, player;
+		for (int i = board.length - 1; i >= 0; i--) {
+			player = board[i][0];
+			matched = player != 0 ? 1 : 0;
+			for (int j = 1; j < board[i].length; j++) {
+				if (board[i][j] != 0) {
+					if (player == board[i][j]) {
+						matched++;
+						if (matched == MATCH)
+							return player;
+					} else {
+						player = board[i][j];
+						matched = 1;
+					}
+				}
+			}
+		}
 		return 0;
 	}
 
@@ -155,7 +170,7 @@ public class ConnectFour {
 		String playerColour = player == 1 ? "red" : "yellow";
 		boolean diskDropped = false;
 		do {
-			System.out.printf("Drop a %s disk at column (0 - %d)\n", playerColour, board[0].length);
+			System.out.printf("Drop a %s disk at column (0 - %d)\n", playerColour, board[0].length - 1);
 			diskDropped = dropDisk(board, player, input.nextInt());
 		} while (!diskDropped);
 
