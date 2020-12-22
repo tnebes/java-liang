@@ -19,11 +19,10 @@ public class ConnectFour {
 		// 1 = red, -1 = yellow, 0 = undecided or draw
 		int player = 1;
 		printBoard(board);
-		while (!isBoardFull(board) && (checkWinner(board, MATCH) != 0)) {
+		do {
 			playerTurn(board, player);
 			player = -player;
-		}
-
+		} while (!isBoardFull(board) && (checkWinner(board, MATCH) != 0));
 	}
 
 	/**
@@ -151,8 +150,42 @@ public class ConnectFour {
 	 */
 	public static void playerTurn(int[][] board, int player) {
 		String playerColour = player == 1 ? "red" : "yellow";
-		System.out.printf("%Drop a %s disk at column (0 - %d)", playerColour, board[0].length);
-		printBoard(board);
+		boolean diskDropped = false;
+		do {
+			System.out.printf("Drop a %s disk at column (0 - %d)\n", playerColour, board[0].length);
+			diskDropped = dropDisk(board, player, input.nextInt());
+		} while (!diskDropped);
 
+		printBoard(board);
 	}
+
+	public static boolean dropDisk(int[][] board, int player, int column) {
+		if (column > board.length) {
+			System.out.printf("Column %d does not exist.\n");
+			return false;
+		} else if (checkColumnFilled(board, column)) {
+			System.out.printf("Column %d is filled.\n");
+			return false;
+		}
+
+		for (int i = 0; i < board[0].length; i++) {
+			for (int j = board.length - 1; j >= 0; j--) {
+				if (board[j][i] == 0) {
+					board[j][i] = player;
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
+	public static boolean checkColumnFilled(int[][] board, int column) {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board[i].length; j++) {
+
+			}
+		}
+		return false;
+	}
+
 }
