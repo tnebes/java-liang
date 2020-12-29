@@ -12,18 +12,33 @@ public class ConnectFour {
 	public static java.util.Scanner input = new java.util.Scanner(System.in);
 
 	public static void main(String[] args) {
-		int[][] board = new int[6][7];
-		final int MATCH = 4;
-		// 1 = red, -1 = yellow, 0 = undecided or draw
-		int player = 1;
-		printBoard(board);
-		do {
-			playerTurn(board, player);
-			player = -player;
-		} while (!isBoardFull(board) && (checkWinner(board, MATCH) == 0));
+		while (true) {
+			final int BOARD_X = 7;
+			final int BOARD_Y = 6;
+			int[][] board = new int[BOARD_Y][BOARD_X];
+			final int MATCH = 4;
+			// 1 = red, -1 = yellow, 0 = undecided or draw
+			int player = 1, winner = 0;
+			boolean boardFull = false;
+			printBoard(board);
+			do {
+				playerTurn(board, player);
+				player = -player;
+				boardFull = !checkBoardFull(board);
+				winner = checkWinner(board, MATCH);
+			} while (boardFull && (winner == 0));
 
-		// TODO: add text for when there is a winner.
-		// TODO: add text for when the board is filled
+			if (winner != 0) {
+				System.out.printf("Player %s won!\n", winner == 1 ? "red" : "yellow");
+				System.out.printf("Rematch? Y/N ");
+			} else {
+				System.out.printf("Board filled. Retry? Y/N ");
+			}
+			if (input.next().toLowerCase().equals("n")) {
+				System.out.print("Thanks for playing!\n");
+				System.exit(0);
+			}
+		}
 	}
 
 	/**
@@ -32,7 +47,7 @@ public class ConnectFour {
 	 * @param board
 	 * @return boolean
 	 */
-	public static boolean isBoardFull(int[][] board) {
+	public static boolean checkBoardFull(int[][] board) {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board[i].length; j++) {
 				if (board[i][j] == 0)
@@ -49,15 +64,28 @@ public class ConnectFour {
 	 */
 	public static void printBoard(int[][] board) {
 		char disk = ' ';
+		System.out.print(" ");
+		for (int i = 0; i < board[0].length; i++) {
+			System.out.printf("%d ", i);
+		}
+		System.out.print("\n");
+		for (int i = 0; i <= board[0].length * 2; i++) {
+			System.out.printf("_", i);
+		}
+		System.out.print("\n");
+
 		for (int i = 0; i < board.length; i++) {
 			System.out.print("|");
 			for (int j = 0; j < board[i].length; j++) {
 				switch (board[i][j]) {
-					case 1:	disk = 'R';
-								break;
-					case -1:	disk = 'Y';
-								break;
-					default: disk = ' ';					
+				case 1:
+					disk = 'R';
+					break;
+				case -1:
+					disk = 'Y';
+					break;
+				default:
+					disk = ' ';
 				}
 				System.out.printf("%c|", disk);
 			}
@@ -91,10 +119,11 @@ public class ConnectFour {
 	}
 
 	/**
+	 * Checks all horizontal spots for winner
 	 * 
 	 * @param board
 	 * @param MATCH
-	 * @return
+	 * @return playerid (int)
 	 */
 	public static int checkHorizontal(int[][] board, int MATCH) {
 		int matched, player;
@@ -118,10 +147,11 @@ public class ConnectFour {
 	}
 
 	/**
+	 * Checks all columns for winners
 	 * 
 	 * @param board
 	 * @param MATCH
-	 * @return
+	 * @return playerid
 	 */
 	public static int checkVertical(int[][] board, int MATCH) {
 		int matched, player;
@@ -129,19 +159,30 @@ public class ConnectFour {
 			player = board[0][i];
 			matched = player != 0 ? 1 : 0;
 			for (int j = board.length - 1; j >= 0; j--) {
-
+				if (board[j][i] == 0)
+					break;
+				if (board[j][i] != 0) {
+					if (player == board[j][i]) {
+						matched++;
+						if (matched == MATCH)
+							return player;
+					} else {
+						player = board[j][i];
+						matched = 1;
+					}
+				}
 			}
 		}
-		
-		
 		return 0;
 	}
 
 	/**
+	 * Method calls two additional functions that check whether there is a winner to
+	 * be found diagonally and antidiagonally.
 	 * 
 	 * @param board
 	 * @param MATCH
-	 * @return
+	 * @return playerid
 	 */
 	public static int checkAcross(int[][] board, int MATCH) {
 		int diagonalCheck = checkDiagonal(board, MATCH);
@@ -152,22 +193,68 @@ public class ConnectFour {
 	}
 
 	/**
+	 * Method checks diagonals for winners.
 	 * 
 	 * @param board
 	 * @param MATCH
-	 * @return
+	 * @return playerid
 	 */
 	public static int checkDiagonal(int[][] board, int MATCH) {
+		for (int i = 0; i < board.length - MATCH; i++) {
+			for (int j = 0; j < board[0].length - MATCH; j++) {
+				if (board[i][j] == -1)
+					break;
+				int player = board[i][j], matched = 1;
+				for (int k = 1; k <= MATCH; k++) {
+					try {
+						if (player == board[i + k][j + k]) {
+							matched++;
+							if (matched == MATCH) {
+								return player;
+							}
+						} else {
+							player = board[i + k][j + k];
+							matched = 1;
+						}
+					} catch (ArrayIndexOutOfBoundsException e) {
+						break;
+					}
+				}
+			}
+		}
 		return 0;
 	}
 
 	/**
+	 * Method checks antidiagonals for winners.
 	 * 
 	 * @param board
 	 * @param MATCH
-	 * @return
+	 * @return playerid
 	 */
 	public static int checkAntidiagonal(int[][] board, int MATCH) {
+		for (int i = board.length - 1; i > board.length - MATCH; i--) {
+			for (int j = 0; j < board[0].length - MATCH; j++) {
+				if (board[i][j] == -1)
+					break;
+				int player = board[i][j], matched = 1;
+				for (int k = 1; k <= MATCH; k++) {
+					try {
+						if (player == board[i - k][j + k]) {
+							matched++;
+							if (matched == MATCH) {
+								return player;
+							}
+						} else {
+							player = board[i - k][j + k];
+							matched = 1;
+						}
+					} catch (ArrayIndexOutOfBoundsException e) {
+						break;
+					}
+				}
+			}
+		}
 		return 0;
 	}
 
@@ -188,14 +275,16 @@ public class ConnectFour {
 	}
 
 	/**
-	 * Drops a disk in the selected column for a player. Returns true if the disk has been dropped.
+	 * Drops a disk in the selected column for a player. Returns true if the disk
+	 * has been dropped.
+	 * 
 	 * @param board
 	 * @param player
 	 * @param column
 	 * @return boolean
 	 */
 	public static boolean dropDisk(int[][] board, int player, int column) {
-		if (column > board.length) {
+		if (column > board.length || column < 0) {
 			System.out.printf("Column %d does not exist.\n", column);
 			return false;
 		} else if (checkColumnFilled(board, column)) {
@@ -214,6 +303,7 @@ public class ConnectFour {
 
 	/**
 	 * Checks whether the selected column in the board is filled.
+	 * 
 	 * @param board
 	 * @param column
 	 * @return boolean
