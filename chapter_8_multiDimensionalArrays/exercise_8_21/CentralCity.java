@@ -11,7 +11,6 @@ public class CentralCity {
 	 */
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		solve();
 	}
 
@@ -45,6 +44,7 @@ public class CentralCity {
 			cities[i][0] = input.nextDouble();
 			cities[i][1] = input.nextDouble();
 		}
+		input.close();
 		return cities;
 	}
 
