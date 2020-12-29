@@ -11,3 +11,4 @@ learning/
 .gitignore~
 *.class
 *.project
+/**/.settings/
