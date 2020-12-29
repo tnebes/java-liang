@@ -17,7 +17,9 @@ public class CentralCity {
 	public static void solve() {
 		double[][] coordinates = setCities();
 		System.out.printf("The central city is as (%f, %f)\nThe total distance to all other cities is %f",
-				findCentralCity(coordinates)[0], findCentralCity(coordinates)[1], findCentralCity(coordinates)[2]);
+				findCentralCity(coordinates)[0],
+				findCentralCity(coordinates)[1],
+				findCentralCity(coordinates)[2]);
 	}
 
 	public static double[] findCentralCity(double[][] cityCoordinates) {
@@ -32,7 +34,9 @@ public class CentralCity {
 				centralCityIndex = i;
 			}
 		}
-		return new double[] { cityCoordinates[centralCityIndex][0], cityCoordinates[centralCityIndex][1], minDistanceSum };
+		return new double[] { cityCoordinates[centralCityIndex][0],
+				cityCoordinates[centralCityIndex][1],
+				minDistanceSum };
 	}
 
 	public static double[][] setCities() {
