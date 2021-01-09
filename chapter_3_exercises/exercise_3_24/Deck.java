@@ -9,11 +9,11 @@ public class Deck {
 	}
 	
 	public Deck(int size) {
-		this.deck = new Card[size];
+		deck = new Card[size];
 		// cards with rank and suit < 0 are considered to be empty.
 		// Initialise an empty deck of 52 cards.
 		for (int i = 0; i < deck.length; i++)
-			this.deck[i] = new Card(-1, -1);
+			deck[i] = new Card(-1, -1);
 	}
 	
 	/**
@@ -52,7 +52,7 @@ public class Deck {
 		for (int i = 0; i < MAX_SUIT; i++) {
 			for (int j = 0; j < MAX_RANK; j++) {
 				deck[card++] = new Card(j, i);
-				if (card >= deck.length);
+				if (card >= deck.length)
 					break;
 			}
 		}
