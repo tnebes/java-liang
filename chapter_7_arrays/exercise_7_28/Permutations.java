@@ -13,8 +13,11 @@ public class Permutations {
 	public static void main(String[] args) {
 		
 		java.util.Scanner input = new java.util.Scanner(System.in);
-		System.out.print("Please enter integers separated by spaces: ");
-		int[] myIntegers = parseIntegers(input.nextLine());
+		int[] myIntegers;
+		do {
+			System.out.print("Please enter integers separated by spaces: ");
+			myIntegers = parseIntegers(input.nextLine());
+		} while (hasDuplicates(myIntegers));
 
 		//getting the number of permutations to set up the array.
 		int numOfPermutations = 1;
@@ -74,6 +77,18 @@ public class Permutations {
 			}	
 		}
 		return parsedIntegers;
+	}
+	
+	public static boolean hasDuplicates(int[] array) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = array.length - 1; j > i; j--) {
+				if (array[i] == array[j]) {
+					System.out.print("Identical values not allowed.\n");
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 	public static void getPermutations(int[] list,
