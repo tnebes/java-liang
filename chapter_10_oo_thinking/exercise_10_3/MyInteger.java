@@ -10,6 +10,7 @@
  * 	static method parseInt(char[]) for an array : int
  * 	static method parseInt(String) that converts the String into int
  */
+
 public class MyInteger {
 
 	private int value;
@@ -56,7 +57,6 @@ public class MyInteger {
 	}
 	
 	public static boolean isPrime(int value) {
-		// uses sieve of Eratosthenes
 		for (int i = 2; i <= Math.sqrt(value); i++) {
 			if (value % i == 0) {
 				return false;
@@ -74,13 +74,13 @@ public class MyInteger {
 	}
 	
 	public static int parseInt(char[] array) {
-		int number = 0;
-		for (int i = 0; i < array.length; i++) {
-			number += Character.getNumericValue(array[i]) * Math.pow(10, array.length - i - 1);
+		int value = 0;
+		for (int i = 0, j = (int) Math.pow(10, array.length - 1); i < array.length; i++, j /= 10) {
+			value += (array[i]- 48) * j;
 		}
-		return number;
+		return value;
 	}
-	
+
 	public static int parseInt(String myString) {
 		return MyInteger.parseInt(myString.toCharArray());
 	}
