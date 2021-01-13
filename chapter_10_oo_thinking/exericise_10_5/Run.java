@@ -4,6 +4,7 @@
  * Use the StackOfIntegers class to store the factors and retrieve and display them
  * in reverse order.
  */
+
 public class Run {
 
 	public static void main(String[] args) {
@@ -11,6 +12,7 @@ public class Run {
 		java.util.Scanner input = new java.util.Scanner(System.in);
 		System.out.print("Enter an integer ");
 		int myInt = input.nextInt();
+		input.close();
 		StackOfIntegers stack = getSmallestFactors(myInt);
 		while (!stack.empty()) {
 			System.out.printf("%d\n", stack.pop());
