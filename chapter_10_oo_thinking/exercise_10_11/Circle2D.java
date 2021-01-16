@@ -47,14 +47,31 @@ public class Circle2D {
 		return 2 * Math.PI * radius;
 	}
 	
+	/**
+	 * Calculates the distance between the centre of the circle and a given point
+	 * @param x
+	 * @param y
+	 * @return double
+	 */
 	private double distance(double x, double y) {
 		return Math.sqrt(Math.pow((this.x - x), 2) + Math.pow((this.y - y), 2));
 	}
 	
+	/**
+	 * Checks whether this circle contains this object
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	public boolean contains(double x, double y) {
 		return distance(x, y) <= radius ? true : false;
 	}
 	
+	/**
+	 * Checks whether this circle completely contains another circle
+	 * @param circle
+	 * @return boolean
+	 */
 	public boolean contains(Circle2D circle) {
 		// no need to do any further calculations if the point is not in the circle 
 		if (!contains(circle.getX(), circle.getY())) {
@@ -64,6 +81,11 @@ public class Circle2D {
 		}
 	}
 	
+	/**
+	 * Checks whether this circle overlaps another circle
+	 * @param circle
+	 * @return
+	 */
 	public boolean overlaps(Circle2D circle) {
 		if (contains(circle.getX(), circle.getY())) {
 			return true;
