@@ -93,23 +93,6 @@ public class ATMachine {
 	}
 	
 	/**
-	 * Starts the machine. The machine never stops.
-	 */
-	public void run() {
-		Account loadedAccount;
-		while(true) {
-			java.util.Scanner input = new java.util.Scanner(System.in);
-			do {
-				System.out.print("enter id: ");
-				loadedAccount = getAccount(input.nextInt());
-			} while(!loadedAccount.isActive());
-			do {
-				showMenu();
-			} while (getMainMenuChoice(input, loadedAccount));
-		}
-	}
-	
-	/**
 	 * Returns the account with a given id. If no account is found, returns an inactive account.
 	 * TODO: make it not bad
 	 * @param id
@@ -131,6 +114,7 @@ public class ATMachine {
 	 * Prints the main menu
 	 */
 	private void showMenu() {
+		System.out.print("\n");
 		for(int i = 0; i < mainMenuChoices.length; i++) {
 			System.out.printf("%d: %s\n", i + 1, mainMenuChoices[i]);
 		}
@@ -212,6 +196,23 @@ public class ATMachine {
 	private void deposit(java.util.Scanner input, Account loadedAccount) {
 		System.out.print("Enter an amount to deposit: ");
 		loadedAccount.deposit(input.nextDouble());
+	}
+	
+	/**
+	 * Starts the machine. The machine never stops.
+	 */
+	public void run() {
+		Account loadedAccount;
+		while(true) {
+			java.util.Scanner input = new java.util.Scanner(System.in);
+			do {
+				System.out.print("enter id: ");
+				loadedAccount = getAccount(input.nextInt());
+			} while(!loadedAccount.isActive());
+			do {
+				showMenu();
+			} while (getMainMenuChoice(input, loadedAccount));
+		}
 	}
 
 }
