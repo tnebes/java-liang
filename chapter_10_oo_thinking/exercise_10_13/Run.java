@@ -17,7 +17,6 @@ public class Run {
 		System.out.printf("r1.contains(3, 3): %b\n", r1.contains(3, 3));
 		System.out.printf("r1.contains(new MyRectangle2D(4, 5, 10.5, 3.2)): %b\n", r1.contains(new MyRectangle2D(4, 5, 10.5, 3.2)));
 		System.out.printf("r1.overlaps(new MyRectangle2D(3, 5, 2.3, 5.4)): %b\n", r1.overlaps(new MyRectangle2D(3, 5, 2.3, 5.4)));
-
 	}
 
 }
