@@ -177,7 +177,7 @@ public class ATMachine {
 	 */
 	private boolean withdraw(java.util.Scanner input, Account loadedAccount) {
 		System.out.print("Enter an amount to withdraw: ");
-		double amount = input.nextDouble();
+		double amount = Math.abs(input.nextDouble());
 		if (amount > loadedAccount.getBalance()) {
 			System.out.print("Insufficient funds.\n");
 			checkBalance(loadedAccount);
@@ -195,7 +195,7 @@ public class ATMachine {
 	 */
 	private void deposit(java.util.Scanner input, Account loadedAccount) {
 		System.out.print("Enter an amount to deposit: ");
-		loadedAccount.deposit(input.nextDouble());
+		loadedAccount.deposit(Math.abs(input.nextDouble()));
 	}
 	
 	/**
