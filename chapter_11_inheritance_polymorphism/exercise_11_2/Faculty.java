@@ -8,6 +8,21 @@ public class Faculty extends Employee {
 	public Faculty() {
 
 	}
+	
+	public Faculty(Person person) {
+		super(person);
+	}
+	
+	public Faculty(Person person, Date officeHours, byte rank) {
+		this(person);
+		this.officeHours = officeHours;
+		this.rank = rank;
+	}
+	
+	public Faculty(Date officeHours, byte rank) {
+		this.officeHours = officeHours;
+		this.rank = rank;
+	}
 
 	public Date getOfficeHours() {
 		return officeHours;

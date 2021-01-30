@@ -12,9 +12,23 @@ public class Student extends Person {
 	private byte status;
 	
 	public Student() {
-		
-	}
 
+	}
+	
+	public Student(Person person) {
+		super(person.getName(), person.getAddress(), person.getPhoneNumber(), person.getEmail());
+	}
+	
+	public Student(byte status) {
+		super();
+		this.status = status;
+	}
+	
+	public Student(Person person, byte status) {
+		super(person.getName(), person.getAddress(), person.getPhoneNumber(), person.getEmail());
+		this.status = status;
+	}
+	
 	public byte getStatus() {
 		return status;
 	}

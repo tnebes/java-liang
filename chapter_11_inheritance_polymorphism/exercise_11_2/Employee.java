@@ -9,6 +9,23 @@ public class Employee extends Person {
 	public Employee() {
 	
 	}
+	
+	public Employee(Person person) {
+		super(person.getName(), person.getAddress(), person.getPhoneNumber(), person.getEmail());
+	}
+	
+	public Employee(Person person, String officeLocation, double salary, Date dateHired) {
+		this(person);
+		this.officeLocation = officeLocation;
+		this.salary = salary;
+		this.dateHired = dateHired;
+	}
+	
+	public Employee(String officeLocation, double salary, Date dateHired) {
+		this.officeLocation = officeLocation;
+		this.salary = salary;
+		this.dateHired = dateHired;
+	}
 
 	public String getOfficeLocation() {
 		return officeLocation;
