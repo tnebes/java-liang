@@ -19,11 +19,11 @@ public class Run {
 		System.out.print("Triangle filled? Y/N ");
 		myTriangle.setFilled(input.next().toLowerCase().equals("y") ? true : false);
 		System.out.printf("%s\n", myTriangle.toString());
+		input.close();
 	}
 	
 	public static void main(String[] args) {
 		new Run();
-
 	}
 
 }
