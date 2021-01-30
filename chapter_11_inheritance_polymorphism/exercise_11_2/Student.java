@@ -28,6 +28,16 @@ public class Student extends Person {
 		this.status = status;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return String.format("Student's name is %s and name of the class is %s.\nRank: %d\nAddress: %s\nPhone: %s\nE-mail: %s\n",
+				this.getName(),
+				this.getClass().getName(),
+				this.getStatus(),
+				this.getAddress(),
+				this.getPhoneNumber(),
+				this.getEmail()
+		);
+	}
 
 }

@@ -59,7 +59,13 @@ public class Person extends AbstractPerson {
 	
 	@Override
 	public String toString() {
-		return String.format("Person's name is %s and name of the class is %s\n", this.getName(), this.getClass().getName());
+		return String.format("Person's name is %s and name of the class is %s. Address: %s\nPhone: %s\nE-mail: %s\n",
+				this.getName(),
+				this.getClass().getName(),
+				this.getAddress(),
+				this.getPhoneNumber(),
+				this.getEmail()
+		);
 	}
 	
 	

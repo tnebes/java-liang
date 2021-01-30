@@ -31,6 +31,20 @@ public class Faculty extends Employee {
 		this.rank = rank;
 	}
 	
+	@Override
+	public String toString() {
+		return String.format("Faculty member's name is %s and name of the class is %s. Address: %s\nPhone: %s\nE-mail: %s\nLocation: %s\nSalary: %.2f\nHired: %s\n",
+				this.getName(),
+				this.getClass().getName(),
+				this.getAddress(),
+				this.getPhoneNumber(),
+				this.getEmail(),
+				this.getOfficeLocation(),
+				this.getSalary(),
+				this.getDateHired().toString()
+		);
+	}
+	
 	
 
 }

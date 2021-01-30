@@ -44,5 +44,19 @@ public class Employee extends Person {
 	public void setDateHired(Date dateHired) {
 		this.dateHired = dateHired;
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("Employee's name is %s and name of the class is %s. Address: %s\nPhone: %s\nE-mail: %s\nLocation: %s\nSalary: %.2f\nHired: %s\n",
+				this.getName(),
+				this.getClass().getName(),
+				this.getAddress(),
+				this.getPhoneNumber(),
+				this.getEmail(),
+				this.getOfficeLocation(),
+				this.getSalary(),
+				this.getDateHired().toString()
+		);
+	}
 
 }

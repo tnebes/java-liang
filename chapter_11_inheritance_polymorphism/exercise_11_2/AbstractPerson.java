@@ -9,7 +9,5 @@ public abstract class AbstractPerson {
 	public void setPerson(Person person) {
 		this.ptrPerson = person;
 	}
-	
-	
-	
+		
 }
