@@ -1,3 +1,4 @@
+package alternative;
 /*
  * Design a class named Person and its two subclasses named Student and Employee.
  * Make Faculty and Staff subclasses of Employee.
@@ -9,12 +10,12 @@
  * A staff member has a title.
  * Override the toString method in each class to display the class name and the person’s name.
  */
-public class Person extends AbstractPerson {
+public class Person {
 
 	private String name, address, phoneNumber, email;
 	
 	public Person() {
-		this.ptrPerson = this;
+
 	}
 	
 	public Person(String name, String address, String phoneNumber, String email) {
@@ -22,39 +23,38 @@ public class Person extends AbstractPerson {
 		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
-		this.ptrPerson = this;
 	}
 
 	public String getName() {
-		return ptrPerson.name;
+		return name;
 	}
 
 	public void setName(String name) {
-		ptrPerson.name = name;
+		this.name = name;
 	}
 
 	public String getAddress() {
-		return ptrPerson.address;
+		return address;
 	}
 
 	public void setAddress(String address) {
-		ptrPerson.address = address;
+		this.address = address;
 	}
 
 	public String getPhoneNumber() {
-		return ptrPerson.phoneNumber;
+		return phoneNumber;
 	}
 
 	public void setPhoneNumber(String phoneNumber) {
-		ptrPerson.phoneNumber = phoneNumber;
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
-		return ptrPerson.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
-		ptrPerson.email = email;
+		this.email = email;
 	}
 	
 	@Override

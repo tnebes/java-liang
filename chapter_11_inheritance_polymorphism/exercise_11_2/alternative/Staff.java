@@ -1,20 +1,25 @@
+package alternative;
 public class Staff extends Employee {
 	
 	private String title;
 
 	public Staff() {
-		this(new Person());
+
 	}
 	
 	public Staff(Person person) {
-		this(person, "");
+		super(person);
 	}
 	
 	public Staff(Person person, String title) {
-		this.ptrPerson = person;
+		this(person);
 		this.title = title;
 	}
 	
+	public Staff(String title) {
+		this.title = title;
+	}
+
 	public String getTitle() {
 		return title;
 	}

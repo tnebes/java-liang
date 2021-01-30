@@ -1,3 +1,4 @@
+package alternative;
 import java.util.Date;
 
 public class Faculty extends Employee {
@@ -5,16 +6,25 @@ public class Faculty extends Employee {
 	private Date officeHours;
 	private byte rank;
 	
+	public Faculty() {
+
+	}
+	
 	public Faculty(Person person) {
-		this(person, new java.util.Date(), (byte) -1);
+		super(person);
 	}
 	
 	public Faculty(Person person, Date officeHours, byte rank) {
-		this.ptrPerson = person;
+		this(person);
 		this.officeHours = officeHours;
 		this.rank = rank;
 	}
 	
+	public Faculty(Date officeHours, byte rank) {
+		this.officeHours = officeHours;
+		this.rank = rank;
+	}
+
 	public Date getOfficeHours() {
 		return officeHours;
 	}
