@@ -32,19 +32,25 @@ public class Triangle extends GeometricObject {
 		this.side1 = side1;
 		this.side2 = side2;
 		this.side3 = side3;
-		if (checkInvalidSide()) {
-			this.side3 = this.side1 + side2 - 1;
-			System.out.printf("Warning. Side3 cannot be greater or equal than the sum of the previous sides.\nSide3 set to %f\n", this.side3);
-		}
+		checkInvalidSides();
 		this.perimeter = calculatePerimeter();
 		this.area = calculateArea();
 	}
 	
-	private boolean checkInvalidSide() {
-		if (this.side1 + this.side2 <= this.side3) {
-			return true;
-		}
-		return false;
+	private void checkInvalidSides() {
+		if (side1 + side2 < side3)
+			resetTriangle();
+		else if (side1 + side3 < side2)
+			resetTriangle();
+		else if (side2 + side3 < side1)
+			resetTriangle();
+	}
+	
+	private void resetTriangle() {
+		this.side1 = 1.0;
+		this.side2 = 1.0;
+		this.side3 = 1.0;
+		System.out.print("Invalid input. Sides set to 1\n");
 	}
 
 	private double calculatePerimeter() {
