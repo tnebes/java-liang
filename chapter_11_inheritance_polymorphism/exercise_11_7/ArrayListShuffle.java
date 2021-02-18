@@ -1,5 +1,5 @@
 /*
- * Write the following method that shuffles teh elements in an ArrayList of integers
+ * Write the following method that shuffles the elements in an ArrayList of integers
  */
 
 import java.util.ArrayList;
