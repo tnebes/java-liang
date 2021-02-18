@@ -5,7 +5,6 @@
  * Find the rows and columns with the most 1s
  */
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
