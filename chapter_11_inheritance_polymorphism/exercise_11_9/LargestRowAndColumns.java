@@ -5,6 +5,7 @@
  * Find the rows and columns with the most 1s
  */
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
@@ -20,15 +21,30 @@ public class LargestRowAndColumns {
         ArrayList<ArrayList<Boolean>> matrix = new ArrayList<>();
         populateList(matrix);
         printList(matrix);
-        int row = getRowWithMostOnes(matrix);
-        int column = getColumnWithMostOnes(matrix);
-        System.out.printf("The largest row index: %d\n" +
-                "The largest column index: %d\n",
-                row + 1, column + 1);
+        ArrayList<Integer> row = getRowWithMostOnes(matrix);
+        ArrayList<Integer> column = getColumnWithMostOnes(matrix);
+        printResult(row, column);
     }
 
-    private int getColumnWithMostOnes(ArrayList<ArrayList<Boolean>> matrix) {
-        int currentCounter, largestCounter = 0, largestColumnIndex = -1;
+    private void printResult(ArrayList<Integer> row, ArrayList<Integer> column) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("The largest row index: ");
+        for (int i = 0; i < row.size() - 1; i++) {
+            sb.append(row.get(i)).append(", ");
+        }
+        sb.append(row.get(row.size() - 1));
+        sb.append("\nThe largest column index: ");
+        for (int i = 0; i < column.size() - 1; i++) {
+            sb.append(column.get(i)).append(", ");
+        }
+        sb.append(column.get(column.size() - 1));
+        sb.append("\n");
+        System.out.print(sb.toString());
+    }
+
+    private ArrayList<Integer> getColumnWithMostOnes(ArrayList<ArrayList<Boolean>> matrix) {
+        ArrayList<Integer> returnList = new ArrayList<>();
+        int currentCounter, largestCounter = 0;
         for (int i = 0; i < matrix.get(0).size(); i++) {
             currentCounter = 0;
             for (int j = 0; j < matrix.size(); j++) {
@@ -38,14 +54,18 @@ public class LargestRowAndColumns {
             }
             if (currentCounter > largestCounter) {
                 largestCounter = currentCounter;
-                largestColumnIndex = i;
+                returnList = new ArrayList<Integer>();
+                returnList.add(i);
+            } else if (currentCounter == largestCounter) {
+                returnList.add(i);
             }
         }
-        return largestColumnIndex;
+        return returnList;
     }
 
-    private int getRowWithMostOnes(ArrayList<ArrayList<Boolean>> matrix) {
-        int currentCounter, largestCounter = 0, largestRowIndex = -1;
+    private ArrayList<Integer> getRowWithMostOnes(ArrayList<ArrayList<Boolean>> matrix) {
+        ArrayList<Integer> returnList = new ArrayList<>();
+        int currentCounter, largestCounter = 0;
         int iteration = 0;
         for (ArrayList<Boolean> list : matrix) {
             currentCounter = 0;
@@ -56,11 +76,14 @@ public class LargestRowAndColumns {
             }
             if (currentCounter > largestCounter) {
                 largestCounter = currentCounter;
-                largestRowIndex = iteration;
+                returnList = new ArrayList<>();
+                returnList.add(iteration);
+            } else if (currentCounter == largestCounter) {
+                returnList.add(iteration);
             }
             iteration++;
         }
-        return largestRowIndex;
+        return returnList;
     }
 
     private int getUserInput() {
