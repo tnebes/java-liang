@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class MaximumArrayList {
 
 	public MaximumArrayList() {
-		
 		ArrayList<Integer> myList = new ArrayList<>();
 		java.util.Scanner input = new java.util.Scanner(System.in);
 		System.out.print("Enter numbers. Input ends with 0.\n");
@@ -21,7 +20,6 @@ public class MaximumArrayList {
 			}
 		}
 		System.out.printf("Maximum value is %d\n", max(myList));
-
 		
 	}
 	
