@@ -33,6 +33,7 @@ public class SortArrayListMerge {
     }
 
     public static void sort(ArrayList<Integer> list, int size) {
+        // base case
         if (size < 2) {
             return;
         }
