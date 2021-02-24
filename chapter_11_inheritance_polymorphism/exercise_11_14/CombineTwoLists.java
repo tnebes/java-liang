@@ -5,6 +5,10 @@
  * separated by exactly one space.
  */
 
+/**
+ * @author tnebes 24 February 2021
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
