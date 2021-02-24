@@ -1,7 +1,7 @@
 /*
  * Write a method that removes the duplicate elements from an array list of integers.
  * Write a test program that prompts the user to enter 10 integers to a list
- * and displays the distinct integers in their input order and seperated by exactly
+ * and displays the distinct integers in their input order and separated by exactly
  * one space.
  */
 
