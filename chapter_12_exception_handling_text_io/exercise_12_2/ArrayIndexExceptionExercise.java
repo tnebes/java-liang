@@ -23,7 +23,7 @@ public class ArrayIndexExceptionExercise {
         int[] dom = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         System.out.print("Enter month number: ");
         Scanner input = new Scanner(System.in);
-        int userChoice = input.nextInt();
+        int userChoice = input.nextInt() - 1;
         try {
             System.out.printf("%s - %d", months[userChoice], dom[userChoice]);
         } catch (ArrayIndexOutOfBoundsException e) {
