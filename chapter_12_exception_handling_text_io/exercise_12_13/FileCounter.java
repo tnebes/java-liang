@@ -54,7 +54,7 @@ public class FileCounter {
         }
         return counter;
     }
-    
+
     public static void main(String[] args) {
         new FileCounter(args);
     }
