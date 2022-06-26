@@ -1,4 +1,4 @@
-package checkpoint.checkpoint_13_3_4;
+package checkpoints.checkpoint_13_3_4;
 
 public class Checkpoint_13_3_4 {
 
