@@ -25,9 +25,7 @@ public class Main {
     }
 
     public Main() {
-
-
-
+        //
     }
 
     private String getWordFromFiles() {
