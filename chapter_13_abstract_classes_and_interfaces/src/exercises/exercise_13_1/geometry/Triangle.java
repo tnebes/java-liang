@@ -1,4 +1,4 @@
-package exercises.exercise_13_1;
+package exercises.exercise_13_1.geometry;
 
 import java.util.Arrays;
 
@@ -44,5 +44,10 @@ public class Triangle extends GeometricObject {
     @Override
     public double getCircumference() {
         return Arrays.stream(this.sideLengths).sum();
+    }
+
+    @Override
+    public String getDescription() {
+        return "A " + this.colour + " triangle with sides of length " + Arrays.toString(this.sideLengths).replaceAll("\\[|\\]", " ")+ " and it is " + (this.filled ? "filled." : "not filled.");
     }
 }

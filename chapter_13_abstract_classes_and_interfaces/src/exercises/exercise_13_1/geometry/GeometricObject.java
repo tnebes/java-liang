@@ -1,4 +1,4 @@
-package exercises.exercise_13_1;
+package exercises.exercise_13_1.geometry;
 
 public abstract class GeometricObject {
 
@@ -13,4 +13,6 @@ public abstract class GeometricObject {
     abstract double getArea();
 
     abstract double getCircumference();
+
+    abstract String getDescription();
 }
