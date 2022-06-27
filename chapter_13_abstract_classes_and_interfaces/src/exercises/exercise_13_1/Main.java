@@ -16,10 +16,6 @@ public class Main {
 
     private static final String PROMPT = "> ";
 
-    public static void main(String[] args) {
-        new Main();
-    }
-
     public Main() {
         System.out.println("Enter the sides of a triangle separated by whitespace.\nExample: 2 3 1\n" + PROMPT);
         try (final Scanner scanner = new Scanner(System.in)) {
@@ -47,6 +43,10 @@ public class Main {
                 System.out.println("Invalid triangle.");
             }
         }
+    }
+
+    public static void main(String[] args) {
+        new Main();
     }
 
 }
