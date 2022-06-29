@@ -2,19 +2,9 @@ package exercises.exercise_13_5.geometry;
 
 public abstract class GeometricObject implements Comparable {
 
-    String colour;
-    boolean filled;
-    double[] sideLengths;
-
-    abstract String getColour();
-
-    abstract boolean isFilled();
-
-    abstract double getArea();
-
-    abstract double getPerimeter();
-
-    abstract String getDescription();
+    protected String colour;
+    protected boolean filled;
+    protected double[] sideLengths;
 
     public static GeometricObject max(final GeometricObject o1, final GeometricObject o2) {
         if (o1 != null && o2 != null) {
@@ -22,6 +12,16 @@ public abstract class GeometricObject implements Comparable {
         }
         return null;
     }
+
+    protected abstract String getColour();
+
+    protected abstract boolean isFilled();
+
+    protected abstract double getArea();
+
+    protected abstract double getPerimeter();
+
+    protected abstract String getDescription();
 
     // this is a really bad idea as when compareTo is changed, so should the
     // equals() method be changed as some methods may utilise both compareTo() and equals().

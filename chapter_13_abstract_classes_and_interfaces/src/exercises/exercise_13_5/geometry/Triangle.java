@@ -27,17 +27,12 @@ public class Triangle extends GeometricObject {
     }
 
     @Override
-    public int compareTo(final Object o) {
-        return super.compareTo(o);
-    }
-
-    @Override
-    String getColour() {
+    public String getColour() {
         return this.colour;
     }
 
     @Override
-    boolean isFilled() {
+    public boolean isFilled() {
         return this.filled;
     }
 

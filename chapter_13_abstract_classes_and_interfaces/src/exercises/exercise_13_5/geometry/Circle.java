@@ -20,11 +20,6 @@ public class Circle extends GeometricObject {
     }
 
     @Override
-    public int compareTo(final Object o) {
-        return super.compareTo(o);
-    }
-
-    @Override
     public String getColour() {
         return this.colour;
     }
