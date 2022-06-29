@@ -1,10 +1,10 @@
 package exercises.exercise_13_3;
 
-import exercises.exercise_13_2.ShuffleArrayList;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.IntStream;
+
+import exercises.exercise_13_2.ShuffleArrayList;
 
 public class SortArrayList {
 
