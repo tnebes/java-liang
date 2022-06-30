@@ -1,4 +1,4 @@
-/**
+/*
  * Design an interface named Colorable
  * with a howToColor() : void method
  * Design a class called Square that extends GeometricObject and implement Colorable
