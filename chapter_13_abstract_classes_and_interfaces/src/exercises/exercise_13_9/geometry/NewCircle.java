@@ -2,7 +2,7 @@ package exercises.exercise_13_9.geometry;
 
 import exercises.exercise_13_5.geometry.GeometricObject;
 
-public class NewCircle extends GeometricObject implements Comparable {
+public class NewCircle extends GeometricObject {
 
     private NewCircle(final double perimeter, final String colour, final boolean filled) {
         this.sideLengths = new double[]{perimeter};
