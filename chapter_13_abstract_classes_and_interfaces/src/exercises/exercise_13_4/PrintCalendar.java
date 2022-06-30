@@ -10,6 +10,7 @@ public class PrintCalendar {
     private static final int CALENDAR_WIDTH = 29;
     private static final String[] DAYS_OF_THE_WEEK = new String[]{"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
     private static final String[] MONTHS_OF_THE_YEAR = new String[]{"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
     private final Calendar calendar;
 
     public PrintCalendar(final int month, final int year) {
@@ -30,11 +31,15 @@ public class PrintCalendar {
     }
 
     private static void printDays(final Calendar calendar) {
-        IntStream.range(0, calendar.get(Calendar.DAY_OF_WEEK) + 1).forEach(i -> {
-            System.out.printf("%4s", "");
+        calendar.set(Calendar.DAY_OF_MONTH, 1);
+        IntStream.range(0, calendar.get(Calendar.DAY_OF_WEEK) - 1).forEach(i -> System.out.printf("%4s", ""));
+        IntStream.range(0, calendar.getActualMaximum(Calendar.DAY_OF_MONTH)).forEach(i -> {
+            System.out.printf("%4d", calendar.get(Calendar.DAY_OF_MONTH));
+            if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+                System.out.println();
+            }
             calendar.add(Calendar.DAY_OF_MONTH, 1);
         });
-
     }
 
     private static void printNamesDaysOfTheMonth() {
