@@ -14,6 +14,10 @@ import java.util.Calendar;
 public class Main {
 
     public static void main(String[] args) {
+        new Main(args);
+    }
+
+    public Main(final String[] args) {
         final PrintCalendar printCalendar;
         if (args.length == 1) {
             printCalendar = new PrintCalendar(Integer.parseInt(args[0]), Calendar.getInstance().get(Calendar.YEAR));
