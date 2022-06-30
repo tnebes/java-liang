@@ -18,12 +18,15 @@ package exercises.exercise_13_11;
 
 import exercises.exercise_13_11.geometry.Octagon;
 
+import java.util.stream.Stream;
+
 public class Main {
 
     private Main() {
         final Octagon octagon1 = Octagon.getOctagon(5, "red", true);
         octagon1.getDescription();
         final Octagon octagon2 = octagon1.clone();
+        Stream.of(octagon1, octagon2).forEach(octagon -> System.out.println(octagon.getDescription()));
         System.out.printf("Octagon1 and Octagon2 are %s.\n", octagon1.compareTo(octagon2) == 0 ? "equal" : "not equal");
     }
 

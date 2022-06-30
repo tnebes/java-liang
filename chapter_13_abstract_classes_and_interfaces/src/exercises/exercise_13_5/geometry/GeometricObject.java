@@ -13,15 +13,15 @@ public abstract class GeometricObject implements Comparable {
         return null;
     }
 
-    protected abstract String getColour();
+    public abstract String getColour();
 
-    protected abstract boolean isFilled();
+    public abstract boolean isFilled();
 
-    protected abstract double getArea();
+    public abstract double getArea();
 
-    protected abstract double getPerimeter();
+    public abstract double getPerimeter();
 
-    protected abstract String getDescription();
+    public abstract String getDescription();
 
     // this is a really bad idea as when compareTo is changed, so should the
     // equals() method be changed as some methods may utilise both compareTo() and equals().

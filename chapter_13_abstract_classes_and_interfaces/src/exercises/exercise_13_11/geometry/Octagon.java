@@ -66,12 +66,7 @@ public class Octagon extends GeometricObject implements Cloneable {
     @Override
     public Octagon clone() {
         try {
-            final Octagon clone = (Octagon) super.clone();
-            clone.sideLengths = this.sideLengths;
-            clone.side = this.side;
-            clone.colour = this.colour;
-            clone.filled = this.filled;
-            return clone;
+            return (Octagon) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }

@@ -21,27 +21,27 @@ public class Square extends GeometricObject implements Colorable {
     }
 
     @Override
-    protected String getColour() {
+    public String getColour() {
         return this.colour;
     }
 
     @Override
-    protected boolean isFilled() {
+    public boolean isFilled() {
         return this.filled;
     }
 
     @Override
-    protected double getArea() {
+    public double getArea() {
         return this.sideLengths[0] * this.sideLengths[0];
     }
 
     @Override
-    protected double getPerimeter() {
+    public double getPerimeter() {
         return this.sideLengths[0] * 4;
     }
 
     @Override
-    protected String getDescription() {
+    public String getDescription() {
         return "A Square of perimeter " + this.getPerimeter() + " and area " + this.getArea() + " is coloured " + this.colour + " and it is " + (this.filled ?
                                                                                                                                                    "" :
                                                                                                                                                    "not") + " filled";
