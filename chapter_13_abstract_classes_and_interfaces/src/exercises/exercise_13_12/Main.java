@@ -15,17 +15,17 @@ import java.util.stream.Stream;
 
 public class Main {
 
-    public static double sumArea(final GeometricObject[] objects) {
-        return Stream.of(objects).mapToDouble(GeometricObject::getArea).sum();
-    }
-
     private Main() {
-        System.out.println(sumArea(new GeometricObject[] {
+        System.out.println(sumArea(new GeometricObject[]{
                 Circle.generateCircle(5, "red", true),
                 Circle.generateCircle(3, "blue", false),
                 new Square(5),
                 new Square(3)
         }));
+    }
+
+    public static double sumArea(final GeometricObject[] objects) {
+        return Stream.of(objects).mapToDouble(GeometricObject::getArea).sum();
     }
 
     public static void main(final String[] args) {
