@@ -113,7 +113,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.chapter_14_javafx_basics/com.example.chapter_14_javafx_basics.listings.listing_14_1.Listing_14_1
+                                com.example.chapter_14_javafx_basics/chapter_14_javafx_basics.listings.listing_14_1.Listing_14_1
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
